@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Happy birthday :]</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div class="cat" style="transform: scale(2);">
+	<div class="ear ear--left"></div>
+	<div class="ear ear--right"></div>
+	<div class="face">
+		<div class="eye eye-left">
+			<div class="eye-inner"></div>
+		</div>
+		<div class="eye eye-right">
+			<div class="eye-inner"></div>
+		</div>
+		<div class="muzzle"></div>
+	</div>
+</div>
+
+<div id="bb" style="color: rgb(255, 166, 166); text-align: center; display: none;" class="center">
+<p>Happy 16th birthday</p>
+<p class="nay">Nayon!</p>
+</div>
+</body>
+
+<script>
+
+// function scaleBody() {
+//   var screenWidth = window.innerWidth;
+//   var screenHeight = window.innerHeight;
+
+//   // Calculate the scaling factor based on the screen size
+//   var scaleFactor = Math.max(screenWidth / 1920, screenHeight / 1080);
+
+//   // Apply the scale transform to the body
+//   document.body.style.transform = "scale(" + scaleFactor + ")";
+//   console.log(scaleFactor)
+// }
+
+// Call the function initially
+//scaleBody();
+
+// Update the scale on window resize
+//window.addEventListener("resize", scaleBody);
+
+var ff = false;
+function handleTracking(event) {
+  const eyes = document.querySelectorAll(".eye");
+  [].forEach.call(eyes, function (eye) {
+    let mouseX = eye.getBoundingClientRect().right;
+    if (eye.classList.contains("eye-left")) {
+      mouseX = eye.getBoundingClientRect().left;
+    }
+    let mouseY = eye.getBoundingClientRect().top;
+    let clientX, clientY;
+
+    if (event.touches) {
+      // Touch events
+      clientX = event.touches[0].clientX;
+      clientY = event.touches[0].clientY;
+    } else {
+      // Mouse events
+      clientX = event.clientX;
+      clientY = event.clientY;
+    }
+
+    let radianDegrees = Math.atan2(clientX - mouseX, clientY - mouseY);
+    let rotationDegrees = radianDegrees * (180 / Math.PI) * -1 + 180;
+    eye.style.transform = `rotate(${rotationDegrees}deg)`;
+    if (!ff) {
+      ff = true;
+      setTimeout(fff, 16000);
+    }
+  });
+
+}
+
+function fff(){
+  var bb = document.getElementById("bb")
+  bb.style.display = "block";
+  console.log("@@@@")
+}
+
+document.addEventListener("mousemove", handleTracking);
+document.addEventListener("touchstart", handleTracking);
+document.addEventListener("touchmove", handleTracking);
+
+
+</script>
+</html>
